@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Statut extends Model
+class Formulaire extends Model
 {
     use HasFactory;
 
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->belongsTo('App\User');
+    }
+
+    public function formation(){
+        return $this->belongsTo('App\Formation');
     }
 }

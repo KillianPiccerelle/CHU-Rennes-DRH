@@ -59,11 +59,28 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function statut(){
-        return $this->belongsTo('App\Statut');
+    public function statuts(){
+        return $this->belongsTo(Statut::class);
     }
 
-    public function service(){
-        return $this->belongsTo('App\Service');
+    public function services(){
+        return $this->belongsTo(Service::class);
     }
+
+    public function roles(){
+        return $this->belongsToMany(RoleUser::class, 'user_id');
+    }
+
+    public function formationExternes(){
+        return $this->hasMany(FormationExterne::class);
+    }
+
+    public function formulaires(){
+        return $this->hasMany('App\Formulaire');
+    }
+
+    public function userFormation(){
+        return $this->belongsToMany(UserFormation::class);
+    }
+
 }

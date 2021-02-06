@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class StatutFormation extends Model
 {
     use HasFactory;
 
-    public function roleUser(){
-        return $this->hasMany('App\RoleUser');
+    public function formation(){
+        return $this->hasMany(Formation::class);
     }
-
 }

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FormationController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+Route::middleware('auth:sanctum')->group(function() {
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+    Route::get('/formationsAvailables', [FormationController::class,'index'])->name('formationsAvailables');
+    Route::get('/formationsAvailables/{id}/show', [FormationController::class,'show'])->name('formationsAvailables.show');
+    Route::post('/formationsAvailables/store', [FormationController::class,'store'])->name('formationsAvailables.store');
+
+
+    Route::get('/formationsValidate', [FormationController::class,'validateOneUser'])->name('formationsValidate');
+
+
+
+});
