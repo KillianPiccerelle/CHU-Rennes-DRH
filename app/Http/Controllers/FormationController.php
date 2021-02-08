@@ -51,7 +51,7 @@ class FormationController extends Controller
         $inscriptionUser->user_id = $request->input('user');
         $inscriptionUser->save();
 
-        return redirect()->route('formationsAvailables');
+        return redirect()->route('formationsAvailables')->with('success','L\'utilisateur à bien été inscrit ! ');
     }
 
     public function show($id)
